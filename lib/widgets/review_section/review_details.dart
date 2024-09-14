@@ -12,10 +12,8 @@ class ReviewDetails extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Profile picture
             const ProfilePhoto(),
             const SizedBox(width: 10.0),
-            // Username and date
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +38,6 @@ class ReviewDetails extends StatelessWidget {
                 ],
               ),
             ),
-
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -68,7 +65,6 @@ class ReviewDetails extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 10.0),
-        // User comment
         Text('''Lorem ipsum dolor sit amet, 
 consectetur adipiscing elit. 
 Pellentesque malesuada eget vitae amet. 

@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:grad_proj/reviews/presentation/views/reviews_view.dart';
 import 'package:grad_proj/widgets/button_widget.dart';
 import 'package:grad_proj/widgets/description_details.dart';
-import 'package:grad_proj/widgets/icon_widget.dart';
 import 'package:grad_proj/widgets/product_image_widget.dart';
-import 'package:grad_proj/widgets/product_item.dart';
 import 'package:grad_proj/widgets/product_item_listview.dart';
 import 'package:grad_proj/widgets/review_section/review_details.dart';
 import 'package:grad_proj/widgets/size_item_listview.dart';
 
-class ItemScreen extends StatelessWidget {
+class ItemScreen extends StatefulWidget {
   const ItemScreen({super.key});
 
+  @override
+  State<ItemScreen> createState() => _ItemScreenState();
+}
+
+class _ItemScreenState extends State<ItemScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -76,7 +80,12 @@ class ItemScreen extends StatelessWidget {
                         Text('Reviews',
                             style: Theme.of(context).textTheme.bodyLarge),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const ReviewsView()));
+                          },
                           child: Text(
                             'View All',
                             style: Theme.of(context).textTheme.bodySmall,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:grad_proj/views/item_screen.dart';
+
+import 'package:grad_proj/reviews/presentation/views/reviews_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,11 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const ItemScreen(),
       theme: ThemeData(
-        textTheme: const TextTheme(
-          bodyLarge: TextStyle(
-              fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
-          bodyMedium: TextStyle(fontSize: 20, color: Colors.black),
-          bodySmall: TextStyle(fontSize: 16, color: Colors.black38),
+
         ),
       ),
     );

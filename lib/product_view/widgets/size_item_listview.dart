@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grad_proj/widgets/size_item.dart';
+import 'package:grad_proj/product_view/widgets/size_item.dart';
 
 class SizeItemListview extends StatelessWidget {
   const SizeItemListview({super.key});

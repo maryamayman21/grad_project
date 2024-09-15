@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:grad_proj/models/product_model.dart';
+import 'package:grad_proj/product_view/widgets/button_widget.dart';
+import 'package:grad_proj/product_view/widgets/description_details.dart';
+import 'package:grad_proj/product_view/widgets/product_image_widget.dart';
+import 'package:grad_proj/product_view/widgets/product_item_listview.dart';
+import 'package:grad_proj/product_view/widgets/review_section/review_details.dart';
+import 'package:grad_proj/product_view/widgets/size_item_listview.dart';
 import 'package:grad_proj/reviews/presentation/views/reviews_view.dart';
-import 'package:grad_proj/widgets/button_widget.dart';
-import 'package:grad_proj/widgets/description_details.dart';
-import 'package:grad_proj/widgets/product_image_widget.dart';
-import 'package:grad_proj/widgets/product_item_listview.dart';
-import 'package:grad_proj/widgets/review_section/review_details.dart';
-import 'package:grad_proj/widgets/size_item_listview.dart';
 
 class ItemScreen extends StatefulWidget {
-  const ItemScreen({super.key});
-
+  const ItemScreen({super.key, required this.productModel});
+  final ProductModel productModel;
   @override
   State<ItemScreen> createState() => _ItemScreenState();
 }
@@ -22,7 +23,9 @@ class _ItemScreenState extends State<ItemScreen> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              const ProductImageWidget(),
+              ProductImageWidget(
+                mainImage: widget.productModel.productMainImage,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: Column(
@@ -33,7 +36,7 @@ class _ItemScreenState extends State<ItemScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Mens Printed PullOver Hoodie',
+                          Text(widget.productModel.productSubDescription,
                               style: Theme.of(context).textTheme.bodySmall),
                           Text(
                             'Price',
@@ -48,15 +51,17 @@ class _ItemScreenState extends State<ItemScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Nike Club Fleece',
+                        Text(widget.productModel.productName,
                             style: Theme.of(context).textTheme.bodyLarge),
                         Text(
-                          '120 ' + '\$',
+                          widget.productModel.productPrice + '\$',
                           style: Theme.of(context).textTheme.bodyLarge,
                         )
                       ],
                     ),
-                    const ProductItemListview(),
+                    ProductItemListview(
+                      productModel: widget.productModel,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -71,8 +76,8 @@ class _ItemScreenState extends State<ItemScreen> {
                     const SizeItemListview(),
                     Text('Description',
                         style: Theme.of(context).textTheme.bodyLarge),
-                    const DescriptionDetails(
-                      description: 'Lorem',
+                    DescriptionDetails(
+                      description: widget.productModel.productDescription,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -113,7 +118,7 @@ class _ItemScreenState extends State<ItemScreen> {
                             ],
                           ),
                           Text(
-                            ' 25 \$',
+                            widget.productModel.productPrice + '\$',
                             style: Theme.of(context).textTheme.bodyLarge,
                           ),
                         ],

@@ -12,8 +12,9 @@ class ReviewsView extends StatelessWidget {
         backgroundColor: Colors.white,
         title: const Text('Reviews'),
         centerTitle: true,
-        leading: Icon(
-          Icons.arrow_back,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
         ),
       ),
       body: SingleChildScrollView(

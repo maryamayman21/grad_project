@@ -42,4 +42,13 @@ class FirebaseService {
       print('Error adding review: $e');
     }
   }
+
+  Future<void> updateProduct(Map<String, dynamic> updateDate) async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    try {
+      await firestore.collection('products').doc('product').update(updateDate);
+    } catch (e) {
+      print('Error updating product: $e');
+    }
+  }
 }

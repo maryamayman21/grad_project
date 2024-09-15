@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:grad_proj/widgets/icon_widget.dart';
+import 'package:grad_proj/product_view/widgets/icon_widget.dart';
 
 class ProductImageWidget extends StatelessWidget {
-  const ProductImageWidget({super.key});
-
+  const ProductImageWidget({super.key, required this.mainImage});
+  final String mainImage;
   @override
   Widget build(BuildContext context) {
     return Stack(alignment: Alignment.topCenter, children: [
       Container(
         width: double.infinity,
         height: 500,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
             image: DecorationImage(
-          image: AssetImage(
-            'assets/Rectangle 568.png',
-          ),
+          image: NetworkImage(mainImage),
           fit: BoxFit.cover,
         )),
       ),
       Positioned(
           top: 40,
           left: 15,
-          child:
-              IconWidget(radius: 30, icon: Icons.arrow_back, onPressed: () {})),
+          child: IconWidget(
+              radius: 30,
+              icon: Icons.arrow_back,
+              onPressed: () {
+                Navigator.pop(context);
+              })),
       Positioned(
         top: 40,
         left: 330,

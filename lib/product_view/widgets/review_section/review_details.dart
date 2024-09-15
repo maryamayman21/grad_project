@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grad_proj/widgets/review_section/profile_photo.dart';
+import 'package:grad_proj/product_view/widgets/review_section/profile_photo.dart';
 
 class ReviewDetails extends StatelessWidget {
   const ReviewDetails({super.key});

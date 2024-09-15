@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:grad_proj/widgets/product_item.dart';
+import 'package:grad_proj/models/product_model.dart';
+import 'package:grad_proj/product_view/widgets/product_item.dart';
 
 class ProductItemListview extends StatelessWidget {
-  const ProductItemListview({super.key});
-  final List<String> productItems = const [
-    'assets/hoodie_(1).png',
-    'assets/hoodie_(2).png',
-    'assets/hoodie_(3).png',
-    'assets/hoodie_(4).png'
-  ];
+  const ProductItemListview({super.key, required this.productModel});
+  final ProductModel productModel;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -17,10 +13,10 @@ class ProductItemListview extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return ProductItem(
-            imageUrl: productItems[index],
+            imageUrl: productModel.productImages[index],
           );
         },
-        itemCount: productItems.length,
+        itemCount: productModel.productImages.length,
       ),
     );
   }

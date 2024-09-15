@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grad_proj/home_view/home_screen.dart';
 import 'package:grad_proj/product_view/views/item_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const ItemScreen(),
+      home: const HomeScreen(),
       theme: ThemeData(
         textTheme: const TextTheme(
           bodyLarge: TextStyle(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:grad_proj/models/review_model.dart';
+import 'package:grad_proj/service/firebase_service.dart';
 
 class AddReviewViewBody extends StatefulWidget {
   const AddReviewViewBody({super.key});
@@ -9,6 +11,8 @@ class AddReviewViewBody extends StatefulWidget {
 
 class _AddReviewViewBodyState extends State<AddReviewViewBody> {
   double _rating = 3;
+  String name = '', comment = '';
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -33,6 +37,11 @@ class _AddReviewViewBodyState extends State<AddReviewViewBody> {
                   height: 10,
                 ),
                 TextField(
+                  onChanged: (value) {
+                    setState(() {
+                      name = value;
+                    });
+                  },
                   decoration: InputDecoration(
                       fillColor: Color(0xffF5F6FA),
                       filled: true,
@@ -67,6 +76,11 @@ class _AddReviewViewBodyState extends State<AddReviewViewBody> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: TextField(
+                    onChanged: (value) {
+                      setState(() {
+                        comment = value;
+                      });
+                    },
                     maxLines: 5,
                     decoration: InputDecoration(
                       fillColor: Color(0xffF5F6FA),
@@ -123,7 +137,18 @@ class _AddReviewViewBodyState extends State<AddReviewViewBody> {
             height: 75,
             color: Color(0xff9775FA),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () async {
+                await FirebaseService().addReview(
+                  ReviewModel(
+                    name: name,
+                    image:
+                        'https://firebasestorage.googleapis.com/v0/b/laza-ef7a9.appspot.com/o/profile_pic.png?alt=media&token=ea4f4c4e-730b-41da-bf5b-9b6081c8e784',
+                    date: '15 sep,2024',
+                    comment: comment,
+                    rate: _rating,
+                  ),
+                );
+              },
               child: const Text(
                 'Submit Review',
                 style: TextStyle(

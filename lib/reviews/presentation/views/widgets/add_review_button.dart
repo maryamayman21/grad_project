@@ -4,13 +4,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../add_review/presentation/views/add_review_view.dart';
 
 class AddReviewButton extends StatelessWidget {
-  const AddReviewButton({super.key});
-
+  const AddReviewButton({
+    super.key,
+  });
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(
+      onTap: () async {
+        await Navigator.of(context).push(
           MaterialPageRoute(builder: (context) {
             return const AddReviewView();
           }),

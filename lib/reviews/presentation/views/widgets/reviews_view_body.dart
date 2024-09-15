@@ -1,9 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:grad_proj/models/review_model.dart';
 import 'package:grad_proj/reviews/presentation/views/widgets/add_review_button.dart';
 import 'package:grad_proj/reviews/presentation/views/widgets/review_item.dart';
+import 'package:grad_proj/service/firebase_service.dart';
 
-class ReviewsViewBody extends StatelessWidget {
+class ReviewsViewBody extends StatefulWidget {
   const ReviewsViewBody({super.key});
+
+  @override
+  State<ReviewsViewBody> createState() => _ReviewsViewBodyState();
+}
+
+class _ReviewsViewBodyState extends State<ReviewsViewBody> {
+  var reviews;
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  refreshDate() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,19 +89,25 @@ class ReviewsViewBody extends StatelessWidget {
             ],
           ),
           SizedBox(height: 20),
-          ListView.builder(
-            itemCount: 10,
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 10,
-                ),
-                child: ReviewItem(),
-              );
-            },
-          ),
+          FutureBuilder(
+              future: FirebaseService().getAllReviews(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  var reviewsList = snapshot.data as List<ReviewModel>;
+                  return ListView.builder(
+                    itemCount: reviewsList.length,
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return ReviewItem(
+                        reviewModel: reviewsList[index],
+                      );
+                    },
+                  );
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
+              })
         ],
       ),
     );

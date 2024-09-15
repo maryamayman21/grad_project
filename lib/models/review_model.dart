@@ -3,7 +3,7 @@ class ReviewModel {
   final String image;
   final String date;
   final String comment;
-  final String rate;
+  final double rate;
   ReviewModel(
       {required this.name,
       required this.image,
@@ -17,7 +17,17 @@ class ReviewModel {
       image: map['image'],
       date: map['date'],
       comment: map['comment'],
-      rate: map['rate'],
+      rate: map['rate'] as double,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'image': image,
+      'date': date,
+      'comment': comment,
+      'rate': rate,
+    };
   }
 }

@@ -33,4 +33,13 @@ class FirebaseService {
     }
     return reviews;
   }
+
+  Future<void> addReview(ReviewModel reviewModel) async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    try {
+      await firestore.collection('reviews').add(reviewModel.toJson());
+    } catch (e) {
+      print('Error adding review: $e');
+    }
+  }
 }

@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:grad_proj/models/review_model.dart';
 
 class ReviewItem extends StatelessWidget {
-  const ReviewItem({super.key});
+  const ReviewItem({super.key, required this.reviewModel});
+  final ReviewModel reviewModel;
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
             CircleAvatar(
               radius: 25,
               backgroundImage: NetworkImage(
-                  "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"),
+                reviewModel.image,
+              ),
             ),
             SizedBox(width: 10),
             Column(
               children: [
                 Text(
-                  'Jenny Wilson',
+                  reviewModel.name,
                   style: TextStyle(
                     color: Color(0xff1D1E20),
                     fontSize: 15,
@@ -36,7 +40,7 @@ class ReviewItem extends StatelessWidget {
                     ),
                     SizedBox(width: 5),
                     Text(
-                      '13 Sep, 2022',
+                      reviewModel.date,
                       style: TextStyle(
                         color: Color(0xff8F959E),
                         fontSize: 11,
@@ -49,13 +53,13 @@ class ReviewItem extends StatelessWidget {
             ),
             Spacer(),
             RatingWidget(
-              rating: 4.5,
+              rating: reviewModel.rate,
             ),
           ],
         ),
         SizedBox(height: 10),
         Text(
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...',
+          reviewModel.comment,
           maxLines: 3,
           style: TextStyle(
             color: Color(0xff8F959E),
